@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrotherBench — Same guys. Every week.</title>
+  <meta name="description" content="BrotherBench is a paid membership for small weekly men's circles online. Friendship infrastructure — not therapy, not dating, not alpha theater." />
+  <style>
+    :root {
+      --bg: #0f1419;
+      --bg2: #1a222c;
+      --card: #222b36;
+      --text: #eef2f6;
+      --muted: #9aa7b5;
+      --accent: #c4a574;
+      --accent2: #e8d5b5;
+      --line: #2e3946;
+      --ok: #7dcea0;
+      --warn: #e8b86d;
+      --radius: 14px;
+      --max: 720px;
+      --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent2); }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+    header {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0;
+      background: rgba(15,20,25,.92);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .logo { font-weight: 700; letter-spacing: .02em; color: var(--text); text-decoration: none; font-size: 1.1rem; }
+    .logo span { color: var(--accent); }
+    .nav a.cta {
+      background: var(--accent);
+      color: #1a140c;
+      text-decoration: none;
+      font-weight: 600;
+      padding: .55rem 1rem;
+      border-radius: 999px;
+      font-size: .9rem;
+    }
+    .hero { padding: 4rem 0 3rem; }
+    .eyebrow {
+      display: inline-block;
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      line-height: 1.15;
+      margin: 0 0 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 1.75rem; max-width: 38rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.5rem; }
+    .btn {
+      display: inline-block;
+      padding: .85rem 1.25rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .btn-primary { background: var(--accent); color: #1a140c; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .fine { font-size: .85rem; color: var(--muted); }
+    section { padding: 2.75rem 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 1.45rem; margin: 0 0 1rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.05rem; margin: 0 0 .4rem; }
+    .grid { display: grid; gap: 1rem; }
+    @media (min-width: 640px) {
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+    .steps li {
+      position: relative;
+      padding: 1rem 0 1rem 3rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .steps li:last-child { border-bottom: none; }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute; left: 0; top: 1rem;
+      width: 2rem; height: 2rem;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1px solid var(--accent);
+      color: var(--accent2);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .9rem;
+    }
+    .steps strong { color: var(--text); display: block; margin-bottom: .2rem; }
+    .price { font-size: 1.75rem; font-weight: 700; color: var(--accent2); margin: .35rem 0; }
+    .price small { font-size: .9rem; font-weight: 500; color: var(--muted); }
+    .tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      background: rgba(196,165,116,.15);
+      color: var(--accent);
+      padding: .25rem .5rem;
+      border-radius: 6px;
+      margin-bottom: .5rem;
+    }
+    .featured { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(196,165,116,.25); }
+    details {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: .9rem 1rem;
+      margin-bottom: .6rem;
+    }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { margin: .6rem 0 0; color: var(--muted); font-size: .95rem; }
+    .waitlist {
+      background: linear-gradient(160deg, var(--bg2), var(--card));
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 1.75rem;
+    }
+    label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: .35rem; }
+    input[type="email"], input[type="text"] {
+      width: 100%;
+      padding: .8rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: .85rem;
+      font-family: inherit;
+    }
+    input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    .crisis {
+      background: rgba(232,184,109,.08);
+      border: 1px solid rgba(232,184,109,.35);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .crisis strong { color: var(--warn); }
+    footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .note { font-size: .8rem; color: var(--muted); margin-top: .75rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#">Brother<span>Bench</span></a>
+      <a class="cta" href="#waitlist">Join the waitlist</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="eyebrow">Men's weekly circles · Online</div>
+      <h1>Same guys. Every week. No performance.</h1>
+      <p class="lede">
+        BrotherBench is friendship infrastructure for men — small Zoom circles of 6–8 who keep the same seats.
+        Not therapy. Not dating. Not “alpha.” Just a reserved place to show up.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#waitlist">Get founding seats</a>
+        <a class="btn btn-ghost" href="#how">How circles work</a>
+      </div>
+      <p class="fine">Founding rate $39/mo for 3 months, then $49/mo Core · Cancel anytime · Guest Week available</p>
+    </div>
+
+    <section id="who">
+      <div class="wrap">
+        <h2>Who it's for</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Remote workers</h3>
+            <p>Your coworkers are Slack icons. You want actual guys on the calendar.</p>
+          </div>
+          <div class="card">
+            <h3>After a split or move</h3>
+            <p>The old network didn't travel with you. Start a new one on purpose.</p>
+          </div>
+          <div class="card">
+            <h3>Men with too few close friends</h3>
+            <p>You're fine on paper. Weekends and hard weeks feel thin. That's enough reason.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <h2>How a circle works</h2>
+        <ol class="steps">
+          <li>
+            <strong>Matched into a group of 6–8</strong>
+            We place you by time zone, schedule, and what you're looking for — not by status.
+          </li>
+          <li>
+            <strong>90 minutes, same day each week</strong>
+            Check-in → one theme → commitments. Cameras on when you can. Pass is always allowed.
+          </li>
+          <li>
+            <strong>Same seats, week after week</strong>
+            No rotating strangers. Friendship needs reps, not endless mixers.
+          </li>
+          <li>
+            <strong>Async chat between calls</strong>
+            A private community channel for your circle — light, optional, no pressure to perform.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <h2>Pricing</h2>
+        <div class="grid grid-2">
+          <div class="card featured">
+            <div class="tag">Best to start</div>
+            <h3>Founding Bench → Core</h3>
+            <div class="price">$39 <small>/mo for 3 months</small></div>
+            <p>Then $49/mo Core. Weekly circle seat, community chat, monthly open forum. Cancel anytime.</p>
+          </div>
+          <div class="card">
+            <h3>Guest Week</h3>
+            <div class="price">$0</div>
+            <p>Try one facilitated open circle before you pay. Limited seats each week.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <details open>
+          <summary>Is this therapy?</summary>
+          <p>
+            <strong>No.</strong> BrotherBench is a peer community and facilitated friendship circle.
+            We do not diagnose, treat, or provide mental-health care. If you need a licensed professional, please see one.
+            Facilitators hold structure and safety — they are not your therapists.
+          </p>
+        </details>
+        <details>
+          <summary>What if I'm in crisis?</summary>
+          <p>
+            If you are in immediate danger, call local emergency services.
+            In the United States, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) —
+            <a href="https://988lifeline.org/" rel="noopener">988lifeline.org</a>.
+            BrotherBench is not a crisis hotline and cannot replace emergency or clinical care.
+          </p>
+        </details>
+        <details>
+          <summary>Do I have to share deep feelings?</summary>
+          <p>No. You can pass any round. Most men start light. Consistency beats intensity.</p>
+        </details>
+        <details>
+          <summary>Is this a dating or “masculinity” program?</summary>
+          <p>No dating pitch inside circles. No grievance brand. No pickup curriculum. Friendship first.</p>
+        </details>
+        <details>
+          <summary>Can I cancel?</summary>
+          <p>Yes. Cancel anytime. Founding pricing covers your first three paid months; then Core list price applies if you stay.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="crisis">
+          <strong>Crisis resource:</strong> If you or someone you know is struggling or in crisis, help is available.
+          In the U.S., call or text <strong>988</strong>. BrotherBench members are also encouraged to seek licensed care when issues go beyond peer support.
+        </div>
+      </div>
+    </section>
+
+    <section id="waitlist">
+      <div class="wrap">
+        <div class="waitlist">
+          <h2>Join the waitlist</h2>
+          <p class="lede" style="font-size:1rem;margin-bottom:1.25rem;">
+            Tell us you're interested. We'll send Guest Week and founding-seat details when Reginald opens them.
+            This form is a <strong>placeholder for review</strong> — it does not submit anywhere yet.
+          </p>
+          <form id="waitlist-form" action="#" method="get" onsubmit="return showThanks(event)">
+            <label for="name">First name</label>
+            <input id="name" name="name" type="text" placeholder="James" autocomplete="given-name" />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@email.com" autocomplete="email" />
+            <button class="btn btn-primary" type="submit">Request founding info</button>
+            <p class="note">By joining you agree this is not therapy. In crisis, contact 988 (US) or local emergency services. No spam.</p>
+          </form>
+          <p id="thanks" class="fine" style="display:none;color:var(--ok);margin-top:1rem;">
+            Thanks — this demo form only shows a confirmation. Wire it to Tally/Stripe when approved.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong style="color:var(--text)">BrotherBench</strong> · Friendship with a seat reserved.</p>
+      <p>Peer community · Not medical or psychological treatment · Review draft — not a live product page.</p>
+    </div>
+  </footer>
+
+  <script>
+    function showThanks(e) {
+      e.preventDefault();
+      document.getElementById('thanks').style.display = 'block';
+      return false;
+    }
+  </script>
+</body>
+</html>
