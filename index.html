@@ -187,7 +187,7 @@
   <header>
     <div class="wrap nav">
       <a class="logo" href="#">Brother<span>Bench</span></a>
-      <a class="cta" href="#waitlist">Join the waitlist</a>
+      <a class="cta" href="#waitlist">Claim your free Guest Week</a>
     </div>
   </header>
 
@@ -200,10 +200,10 @@
         Not therapy. Not dating. Not “alpha.” Just a reserved place to show up.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#waitlist">Get founding seats</a>
+        <a class="btn btn-primary" href="#waitlist">Claim your free Guest Week</a>
         <a class="btn btn-ghost" href="#how">How circles work</a>
       </div>
-      <p class="fine">Founding rate $39/mo for 3 months, then $49/mo Core · Cancel anytime · Guest Week available</p>
+      <p class="fine">Guest Week is free · Planned founding rate $39/mo for 3 months, then $49/mo Core · Paid memberships not open yet</p>
     </div>
 
     <section id="who">
@@ -252,13 +252,14 @@
 
     <section id="pricing">
       <div class="wrap">
-        <h2>Pricing</h2>
+        <h2>Planned pricing</h2>
+        <p class="fine" style="margin:0 0 1rem;">Paid memberships aren't open yet. Start with a free Guest Week; we'll email founding-seat details before anything is charged.</p>
         <div class="grid grid-2">
           <div class="card featured">
-            <div class="tag">Best to start</div>
+            <div class="tag">Planned</div>
             <h3>Founding Bench → Core</h3>
             <div class="price">$39 <small>/mo for 3 months</small></div>
-            <p>Then $49/mo Core. Weekly circle seat, community chat, monthly open forum. Cancel anytime.</p>
+            <p>Then $49/mo Core (planned). Weekly circle seat, community chat, monthly open forum. Cancel anytime.</p>
           </div>
           <div class="card">
             <h3>Guest Week</h3>
@@ -299,7 +300,7 @@
         </details>
         <details>
           <summary>Can I cancel?</summary>
-          <p>Yes. Cancel anytime. Founding pricing covers your first three paid months; then Core list price applies if you stay.</p>
+          <p>Yes. Once paid memberships open, you can cancel anytime. Planned founding pricing covers your first three paid months; then Core list price applies if you stay.</p>
         </details>
       </div>
     </section>
@@ -316,21 +317,26 @@
     <section id="waitlist">
       <div class="wrap">
         <div class="waitlist">
-          <h2>Join the waitlist</h2>
+          <h2>Claim your free Guest Week</h2>
           <p class="lede" style="font-size:1rem;margin-bottom:1.25rem;">
-            Tell us you're interested. We'll send Guest Week and founding-seat details when Reginald opens them.
-            This form is a <strong>placeholder for review</strong> — it does not submit anywhere yet.
+            Sit in on one facilitated open circle, free. Tell us where to reach you and we'll email your Guest Week details.
           </p>
-          <form id="waitlist-form" action="#" method="get" onsubmit="return showThanks(event)">
+          <form id="waitlist-form" action="https://formsubmit.co/hello@brotherbench.com" method="POST">
+            <input type="hidden" name="_subject" value="New BrotherBench Guest Week sign-up" />
+            <input type="hidden" name="_next" value="https://brotherbench.com/#thanks" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
             <label for="name">First name</label>
             <input id="name" name="name" type="text" placeholder="James" autocomplete="given-name" />
             <label for="email">Email</label>
             <input id="email" name="email" type="email" required placeholder="you@email.com" autocomplete="email" />
-            <button class="btn btn-primary" type="submit">Request founding info</button>
+            <label for="timezone">Time zone <span style="opacity:.7">(optional)</span></label>
+            <input id="timezone" name="timezone" type="text" placeholder="e.g. US Eastern" />
+            <button class="btn btn-primary" type="submit">Claim your free Guest Week</button>
             <p class="note">By joining you agree this is not therapy. In crisis, contact 988 (US) or local emergency services. No spam.</p>
           </form>
           <p id="thanks" class="fine" style="display:none;color:var(--ok);margin-top:1rem;">
-            Thanks — this demo form only shows a confirmation. Wire it to Tally/Stripe when approved.
+            You're in. Check your inbox; we'll email your Guest Week details soon.
           </p>
         </div>
       </div>
@@ -340,16 +346,19 @@
   <footer>
     <div class="wrap">
       <p><strong style="color:var(--text)">BrotherBench</strong> · Friendship with a seat reserved.</p>
-      <p>Peer community · Not medical or psychological treatment · Review draft — not a live product page.</p>
+      <p>Peer community · Not medical or psychological treatment · <a href="mailto:hello@brotherbench.com">hello@brotherbench.com</a></p>
     </div>
   </footer>
 
   <script>
-    function showThanks(e) {
-      e.preventDefault();
-      document.getElementById('thanks').style.display = 'block';
-      return false;
-    }
+    (function () {
+      var tz = document.getElementById('timezone');
+      try { if (tz && !tz.value) tz.value = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+      if (location.hash === '#thanks') {
+        document.getElementById('thanks').style.display = 'block';
+        document.getElementById('waitlist').scrollIntoView();
+      }
+    })();
   </script>
 </body>
 </html>
