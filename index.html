@@ -5,18 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BrotherBench — Same guys. Every week.</title>
   <meta name="description" content="BrotherBench is a paid membership for small weekly men's circles online. Friendship infrastructure — not therapy, not dating, not alpha theater." />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <meta name="theme-color" content="#F2F8FD" />
   <style>
     :root {
-      --bg: #0f1419;
-      --bg2: #1a222c;
-      --card: #222b36;
-      --text: #eef2f6;
-      --muted: #9aa7b5;
-      --accent: #c4a574;
-      --accent2: #e8d5b5;
-      --line: #2e3946;
-      --ok: #7dcea0;
-      --warn: #e8b86d;
+      --bg: #F2F8FD;
+      --bg2: #E3F0FA;
+      --card: #FFFFFF;
+      --text: #0F2638;
+      --muted: #4A5D6C;
+      --accent: #0B5E8E;
+      --accent2: #BB3F1E;
+      --line: #CFE2F0;
+      --ok: #166534;
+      --warn: #92400E;
+      --sky: #2B9BD8;
+      --coral: #F0643C;
       --radius: 14px;
       --max: 720px;
       --font: "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -37,23 +42,57 @@
       padding: 1.25rem 0;
       border-bottom: 1px solid var(--line);
       position: sticky; top: 0;
-      background: rgba(15,20,25,.92);
+      background: rgba(242,248,253,.92);
       backdrop-filter: blur(8px);
       z-index: 10;
     }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .logo { font-weight: 700; letter-spacing: .02em; color: var(--text); text-decoration: none; font-size: 1.1rem; }
-    .logo span { color: var(--accent); }
+    .logo { display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; letter-spacing: .02em; color: var(--text); text-decoration: none; font-size: 1.1rem; white-space: nowrap; }
+    .logo img { width: 36px; height: 36px; border-radius: 50%; flex: none; }
+    .logo .wordmark span { color: var(--accent); }
     .nav a.cta {
       background: var(--accent);
-      color: #1a140c;
+      color: #FFFFFF;
       text-decoration: none;
       font-weight: 600;
       padding: .55rem 1rem;
       border-radius: 999px;
       font-size: .9rem;
+      white-space: nowrap;
     }
-    .hero { padding: 4rem 0 3rem; }
+    @media (max-width: 480px) {
+      .nav { gap: .5rem; }
+      .logo { font-size: 1rem; gap: .4rem; }
+      .logo img { width: 30px; height: 30px; }
+      .nav a.cta { font-size: .78rem; padding: .5rem .75rem; }
+    }
+    @media (max-width: 380px) {
+      .nav a.cta { white-space: normal; text-align: center; line-height: 1.25; border-radius: 14px; max-width: 8.5rem; }
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #F7FBFE 0%, #E3F0FA 55%, #CFE6F6 100%);
+    }
+    .hero-inner { position: relative; z-index: 1; padding: 4rem 1.25rem 7rem; }
+    .hero-art { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .sun {
+      position: absolute; top: 2.75rem; right: 9%;
+      width: 128px; height: 128px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 32%, #F79A78 0%, #F37A52 45%, var(--coral) 100%);
+      box-shadow: 0 0 48px 10px rgba(240,100,60,.22);
+    }
+    .cloud { position: absolute; fill: #FFFFFF; }
+    .cloud-1 { top: 2rem; left: 6%; width: 120px; }
+    .cloud-2 { top: 9.5rem; right: 5%; width: 150px; }
+    .waves { position: absolute; left: 0; bottom: 0; width: 100%; height: 96px; display: block; }
+    @media (max-width: 900px) {
+      .hero-inner { padding: 5.25rem 1.25rem 5.5rem; }
+      .sun { top: 1rem; right: 1.25rem; width: 56px; height: 56px; box-shadow: 0 0 24px 4px rgba(240,100,60,.22); }
+      .cloud-1 { top: 1.6rem; left: auto; right: 4.75rem; width: 70px; }
+      .cloud-2 { display: none; }
+      .waves { height: 64px; }
+    }
     .eyebrow {
       display: inline-block;
       color: var(--accent);
@@ -83,7 +122,7 @@
       font-size: 1rem;
       font-family: inherit;
     }
-    .btn-primary { background: var(--accent); color: #1a140c; }
+    .btn-primary { background: var(--accent); color: #FFFFFF; }
     .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
     .fine { font-size: .85rem; color: var(--muted); }
     section { padding: 2.75rem 0; border-top: 1px solid var(--line); }
@@ -130,13 +169,13 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .06em;
-      background: rgba(196,165,116,.15);
+      background: rgba(43,155,216,.12);
       color: var(--accent);
       padding: .25rem .5rem;
       border-radius: 6px;
       margin-bottom: .5rem;
     }
-    .featured { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(196,165,116,.25); }
+    .featured { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(43,155,216,.30); }
     details {
       background: var(--bg2);
       border: 1px solid var(--line);
@@ -166,8 +205,8 @@
     }
     input:focus { outline: 2px solid var(--accent); border-color: transparent; }
     .crisis {
-      background: rgba(232,184,109,.08);
-      border: 1px solid rgba(232,184,109,.35);
+      background: rgba(232,184,109,.14);
+      border: 1px solid rgba(200,140,40,.45);
       border-radius: var(--radius);
       padding: 1rem 1.15rem;
       color: var(--muted);
@@ -186,13 +225,24 @@
 <body>
   <header>
     <div class="wrap nav">
-      <a class="logo" href="#">Brother<span>Bench</span></a>
+      <a class="logo" href="#"><img src="logo.png" alt="" width="36" height="36" /><span class="wordmark">Brother<span>Bench</span></span></a>
       <a class="cta" href="#waitlist">Claim your free Guest Week</a>
     </div>
   </header>
 
   <main>
-    <div class="wrap hero">
+    <div class="hero">
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div>
+        <svg class="cloud cloud-1" viewBox="0 0 120 56"><path d="M18 52a16 16 0 0 1 2-31.9A22 22 0 0 1 61 12a18 18 0 0 1 30 10 15 15 0 0 1 11 30z"/></svg>
+        <svg class="cloud cloud-2" viewBox="0 0 120 56"><path d="M18 52a16 16 0 0 1 2-31.9A22 22 0 0 1 61 12a18 18 0 0 1 30 10 15 15 0 0 1 11 30z"/></svg>
+        <svg class="waves" viewBox="0 0 1440 96" preserveAspectRatio="none">
+          <path fill="#8FCBEE" d="M0 46 C 240 18, 480 18, 720 36 S 1200 62, 1440 26 L1440 96 L0 96 Z"/>
+          <path fill="#2B9BD8" opacity=".55" d="M0 64 C 300 40, 560 48, 820 60 S 1260 74, 1440 50 L1440 96 L0 96 Z"/>
+          <path fill="#0B5E8E" d="M0 78 C 260 64, 600 66, 900 76 S 1300 86, 1440 72 L1440 96 L0 96 Z"/>
+        </svg>
+      </div>
+      <div class="wrap hero-inner">
       <div class="eyebrow">Men's weekly circles · Online</div>
       <h1>Same guys. Every week. No performance.</h1>
       <p class="lede">
@@ -204,6 +254,7 @@
         <a class="btn btn-ghost" href="#how">How circles work</a>
       </div>
       <p class="fine">Guest Week is free · Planned founding rate $39/mo for 3 months, then $49/mo Core · Paid memberships not open yet</p>
+      </div>
     </div>
 
     <section id="who">
