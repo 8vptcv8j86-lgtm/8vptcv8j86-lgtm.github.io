@@ -10,15 +10,16 @@
   <meta property="og:url" content="https://brotherbench.com/" />
   <meta property="og:title" content="BrotherBench — Same guys. Every week." />
   <meta property="og:description" content="Small weekly Zoom circles of 6–8 men who keep the same seats. Not therapy. Founding Circle now forming." />
-  <meta property="og:image" content="https://brotherbench.com/logo.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://brotherbench.com/og-share.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@BrotherBenchHQ" />
   <meta name="twitter:title" content="BrotherBench — Same guys. Every week." />
   <meta name="twitter:description" content="Small weekly Zoom circles of 6–8 men who keep the same seats. Not therapy. Founding Circle now forming." />
-  <meta name="twitter:image" content="https://brotherbench.com/logo.png" />
+  <meta name="twitter:image" content="https://brotherbench.com/og-share.jpg" />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <meta name="theme-color" content="#F2F8FD" />
+  <!-- Privacy-friendly visit counter would go here later. Nothing is loaded yet; do not add a tracker until the privacy page says so. -->
   <style>
     :root {
       --bg: #F2F8FD;
@@ -231,6 +232,42 @@
       font-size: .85rem;
     }
     .note { font-size: .8rem; color: var(--muted); margin-top: .75rem; }
+    .next {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.35rem;
+    }
+    .next li {
+      position: relative;
+      padding: .7rem 0 .7rem 1.65rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .next li:last-child { border-bottom: none; }
+    .next li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.05rem;
+      width: .55rem;
+      height: .55rem;
+      border-radius: 50%;
+      background: var(--sky);
+      box-shadow: 0 0 0 3px rgba(43,155,216,.16);
+    }
+    .card.founder p { margin: 0 0 .9rem; font-size: 1.02rem; line-height: 1.6; }
+    .card.founder .signoff {
+      margin: .35rem 0 0;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    #thanks { scroll-margin-top: 5rem; }
+    #thanks .ok { color: var(--ok); font-weight: 700; margin: 0 0 .15rem; }
+    #thanks h3 { margin-top: .65rem; }
+    #thanks .next { margin-bottom: 0; }
+    .waitlist h3 { margin-top: 1.25rem; }
   </style>
 </head>
 <body>
@@ -312,6 +349,48 @@
       </div>
     </section>
 
+    <section id="session">
+      <div class="wrap">
+        <h2>What those 90 minutes feel like</h2>
+        <p style="margin:0 0 1rem;color:var(--muted);">
+          Same guys, same order, every week. This is not therapy. A host holds the time and the structure. Hosts are not therapists, and we're still lining one up.
+        </p>
+        <ol class="steps">
+          <li>
+            <strong>Show up</strong>
+            You show up on Zoom with the same guys each week. Cameras on when you can.
+          </li>
+          <li>
+            <strong>Check-in</strong>
+            How the week's actually been, no performance.
+          </li>
+          <li>
+            <strong>One theme for the night</strong>
+            Something real, not a lecture.
+          </li>
+          <li>
+            <strong>Commitments</strong>
+            One small thing you'll do before next week.
+          </li>
+          <li>
+            <strong>Passing is always allowed</strong>
+            You do not have to share deep feelings. Most men start light.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="founder">
+      <div class="wrap">
+        <h2>Who started this</h2>
+        <div class="card founder">
+          <p>I'm Reginald Coleman. I started BrotherBench because most men don't lose their friends in one moment — the calendar just empties out. Work, moving, kids, a split. I wanted a simple fix: the same 6–8 guys, same night every week, on Zoom. A seat that stays yours.</p>
+          <p>I'll sit in once the circle starts.</p>
+          <p class="signoff">Reginald Coleman</p>
+        </div>
+      </div>
+    </section>
+
     <section id="pricing">
       <div class="wrap">
         <h2>Pricing</h2>
@@ -386,11 +465,16 @@
       <div class="wrap">
         <div class="waitlist">
           <h2>Claim a founding spot</h2>
-          <p class="lede" style="font-size:1rem;margin-bottom:1.25rem;">
+          <p class="lede" style="font-size:1rem;margin-bottom:0;">
             Founding Circle now forming. Pick your slot below: Tue 8 PM ET, Sat 11 AM ET, or Sun 7 PM ET.
-            The Founding Circle starts once 8 men are in. We'll open it in the slot most men pick and email you the start date.
-            No card and no charge to claim a spot. We'll send your Join link before your first meeting, so your free week starts with your circle.
           </p>
+          <h3>What happens next</h3>
+          <ul class="next">
+            <li>We email you to confirm your founding spot and the slot you picked.</li>
+            <li>The Founding Circle starts once 8 men are in. We'll open it in the slot most men pick.</li>
+            <li>Before the first meeting, we'll email you the start date and the Zoom / Join link so your free week lines up with your circle.</li>
+            <li>No card and no charge to claim a spot.</li>
+          </ul>
           <form id="waitlist-form" action="https://formsubmit.co/hello@brotherbench.com" method="POST">
             <input type="hidden" name="_subject" value="New BrotherBench founding spot claim" />
             <input type="hidden" name="_next" value="https://brotherbench.com/#thanks" />
@@ -413,9 +497,16 @@
             <button class="btn btn-primary" type="submit">Claim a founding spot</button>
             <p class="note">By joining you agree this is not therapy. In crisis, contact 988 (US) or local emergency services. No spam. See our <a href="privacy.html">Privacy</a> page.</p>
           </form>
-          <p id="thanks" class="fine" role="status" aria-live="polite" style="display:none;color:var(--ok);margin-top:1rem;">
-            You're in. Your founding spot is saved. We'll email you about your slot and your start date.
-          </p>
+          <div id="thanks" role="status" aria-live="polite" style="display:none;margin-top:1.25rem;">
+            <p class="ok">You're in. Your founding spot is saved.</p>
+            <h3>What happens next</h3>
+            <ul class="next">
+              <li>We email you to confirm your founding spot and the slot you picked.</li>
+              <li>The Founding Circle starts once 8 men are in. We'll open it in the slot most men pick.</li>
+              <li>Before the first meeting, we'll email you the start date and the Zoom / Join link so your free week lines up with your circle.</li>
+              <li>No card and no charge to claim a spot.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -434,8 +525,9 @@
       var tz = document.getElementById('timezone');
       try { if (tz && !tz.value) tz.value = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
       if (location.hash === '#thanks') {
-        document.getElementById('thanks').style.display = 'block';
-        document.getElementById('waitlist').scrollIntoView();
+        var thanks = document.getElementById('thanks');
+        thanks.style.display = 'block';
+        thanks.scrollIntoView();
       }
     })();
   </script>
